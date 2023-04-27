@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const todoSlice = createSlice({
-  name: todo,
+  name: "todo",
   initialState: {
     todoItems: [],
     completed: false,
@@ -12,5 +12,5 @@ const todoSlice = createSlice({
     deleteTodo: (state, { payload }) => {},
   },
 });
-export const todoAction = todoSlice.actions;
+export const todoActions = todoSlice.actions;
 export default todoSlice;
