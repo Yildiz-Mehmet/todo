@@ -1,7 +1,7 @@
 function Home() {
   return (
     <>
-      <h1 className="mt-4  text-success">TO-DO LİST</h1>
+      <h1 className="my-4  text-success">TO-DO LİST</h1>
       <form className="form-inline">
         <div className="form-group">
           <input
@@ -12,7 +12,7 @@ function Home() {
           />
         </div>
 
-        <button type="submit" className="btn btn-success mt-2">
+        <button type="submit" className="btn btn-success mt-4">
           ADD TO-DO
         </button>
       </form>
