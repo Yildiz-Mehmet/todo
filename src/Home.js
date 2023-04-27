@@ -1,4 +1,9 @@
+import { useSelector } from "react-redux";
+import TodoInput from "./components/TodoInput";
+
 function Home() {
+  const todoItems = useSelector((state) => state.todo.todoItems);
+
   return (
     <>
       <h1 className="my-4  text-success">TO-DO LİST</h1>
@@ -16,6 +21,13 @@ function Home() {
           ADD TO-DO
         </button>
       </form>
+      <ul className="d-flex flex-column p-3 ">
+        {todoItems?.map((data, index) => (
+          <li className="p-2 bg-light border list-unstyled " key={index}>
+            <TodoInput />
+          </li>
+        ))}
+      </ul>
     </>
   );
 }

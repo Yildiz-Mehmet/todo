@@ -3,7 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 const todoSlice = createSlice({
   name: "todo",
   initialState: {
-    todoItems: [],
+    todoItems: [
+      {
+        id: 1,
+        text: "Bugün doktordan randevum var",
+        completed: false,
+      },
+    ],
     completed: false,
   },
   reducers: {
