@@ -23,7 +23,7 @@ function Home() {
       </form>
       <ul className="d-flex flex-column p-3 ">
         {todoItems?.map((data, index) => (
-          <li className="p-2 bg-light border list-unstyled " key={index}>
+          <li className="p-2 bg-light border list-unstyled flex " key={index}>
             <TodoInput />
           </li>
         ))}
