@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import TodoInput from "./components/TodoInput";
 import { useState } from "react";
+import { addTodo } from "./store/todoSlice";
 
 function Home() {
   const [input, setInput] = useState();
@@ -8,7 +9,7 @@ function Home() {
   const todoItems = useSelector((state) => state.todo.todoItems);
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch();
+    dispatch(addTodo({ text: input }));
   };
 
   return (
@@ -20,7 +21,7 @@ function Home() {
           <input
             onChange={(e) => setInput(e.target.value)}
             type="text"
-            className="form-control"
+            className="form-control w-75 mx-auto"
             id="exampleInputName2"
             placeholder="Enter somethings that you will do"
           />
@@ -30,7 +31,7 @@ function Home() {
           ADD TO-DO
         </button>
       </form>
-      <ul className="d-flex flex-column p-3 ">
+      <ul className="d-flex flex-column p-3 gap-3">
         {todoItems?.map((data, index) => (
           <li className="p-2 bg-light border list-unstyled flex " key={index}>
             <TodoInput data={data} />

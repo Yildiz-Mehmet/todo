@@ -14,15 +14,20 @@ const todoSlice = createSlice({
   },
   reducers: {
     addTodo: (state, { payload }) => {
-      state.todoItems = state.todoItems.push({
-        id: state.todoItems.length() + 1,
+      const newTodo = {
+        id: Date.now(),
         text: payload?.text,
         completed: false,
-      });
+      };
+      state.todoItems.push(newTodo);
     },
     editTodo: (state, { payload }) => {},
-    deleteTodo: (state, { payload }) => {},
+    deleteTodo: (state, { payload }) => {
+      state.todoItems = state.todoItems.filter(
+        (item) => item.id !== payload?.id
+      );
+    },
   },
 });
-export const todoActions = todoSlice.actions;
-export default todoSlice;
+export const { addTodo, deleteTodo } = todoSlice.actions;
+export default todoSlice.reducer;
