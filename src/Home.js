@@ -9,7 +9,11 @@ function Home() {
   const todoItems = useSelector((state) => state.todo.todoItems);
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addTodo({ text: input }));
+    {
+      input && dispatch(addTodo({ text: input }));
+    }
+
+    setInput("");
   };
 
   return (
@@ -21,6 +25,7 @@ function Home() {
           <input
             onChange={(e) => setInput(e.target.value)}
             type="text"
+            value={input}
             className="form-control w-75 mx-auto"
             id="exampleInputName2"
             placeholder="Enter somethings that you will do"
