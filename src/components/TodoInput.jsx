@@ -1,6 +1,7 @@
 import React from "react";
 
-const TodoInput = () => {
+const TodoInput = ({ data }) => {
+  const { id, text, completed } = data;
   return (
     <>
       <style type="text/css">
@@ -20,9 +21,13 @@ input:focus{
       </style>
 
       <div className="h-100 ">
-        <input type="text" className="bg-light w-75 h-100 border border-0 " />
+        <input
+          type="text"
+          value={text}
+          className="bg-light w-75 h-100 border border-0 "
+        />
         <button className="border border-0 bg-light">
-          <i className="fa-solid fa-pen me-4 icon-link icon-link-hover"></i>
+          <i className="fa-solid fa-pen me-4 "></i>
         </button>
         <button className="border border-0 bg-light">
           <i className=" fas fa-trash "></i>
