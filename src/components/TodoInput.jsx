@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteTodo } from "../store/todoSlice";
 import { useRef } from "react";
 
 const TodoInput = ({ data }) => {
+  const [decoration, setDecoration] = useState(true);
   const ref = useRef();
   const dispatch = useDispatch();
   const { id, text, completed } = data;
@@ -11,7 +12,12 @@ const TodoInput = ({ data }) => {
     dispatch(deleteTodo({ id: id }));
   };
   const clickHandler = (e) => {
-    console.log(e.current);
+    setDecoration(!decoration);
+    {
+      decoration
+        ? ref.current.classList.add("text-decoration-line-through")
+        : ref.current.classList.remove("text-decoration-line-through");
+    }
   };
   return (
     <>
@@ -26,6 +32,10 @@ const TodoInput = ({ data }) => {
 input:focus{
   outline: none;
 }
+input{
+  cursor: pointer;
+  
+}
 
 
 `}
@@ -35,10 +45,10 @@ input:focus{
         <input
           type="text"
           value={text}
-          className="bg-light w-75 h-100 border border-0 text-success "
+          className="bg-light w-75 h-100 border border-0 text-success transition: cursor 4s linear 2s; "
           disabled={false}
-          ref={ref}
           onClick={clickHandler}
+          ref={ref}
         />
 
         <button className="border border-0 bg-light">
