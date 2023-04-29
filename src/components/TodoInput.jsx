@@ -5,12 +5,14 @@ import { useRef } from "react";
 
 const TodoInput = ({ data }) => {
   const [decoration, setDecoration] = useState(true);
+
   const ref = useRef();
   const dispatch = useDispatch();
   const { id, text, completed } = data;
   const deleteSubmit = () => {
     dispatch(deleteTodo({ id: id }));
   };
+  const editSubmit = () => {};
   const clickHandler = (e) => {
     setDecoration(!decoration);
     {
@@ -51,7 +53,7 @@ input{
           ref={ref}
         />
 
-        <button className="border border-0 bg-light">
+        <button onClick={editSubmit} className="border border-0 bg-light">
           <i className="fa-solid fa-pen me-4 "></i>
         </button>
         <button onClick={deleteSubmit} className="border border-0 bg-light">
