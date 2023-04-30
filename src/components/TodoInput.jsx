@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteTodo, editTodo } from "../store/todoSlice";
 import { useRef } from "react";
@@ -7,7 +7,10 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 const TodoInput = ({ data }) => {
+  const ref = useRef();
+  const dispatch = useDispatch();
   const [decoration, setDecoration] = useState(true);
+  const { id, text, completed } = data;
   const [show, setShow] = useState(false);
   const editItemss = useSelector((state) => state.editItem);
   console.log(editItemss);
@@ -17,9 +20,6 @@ const TodoInput = ({ data }) => {
     setShow(true);
   };
 
-  const ref = useRef();
-  const dispatch = useDispatch();
-  const { id, text, completed } = data;
   const deleteSubmit = () => {
     dispatch(deleteTodo({ id: id }));
   };
@@ -32,6 +32,8 @@ const TodoInput = ({ data }) => {
         : ref.current.classList.remove("text-decoration-line-through");
     }
   };
+  useEffect(() => {}, []);
+
   return (
     <>
       <style type="text/css">

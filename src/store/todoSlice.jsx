@@ -18,7 +18,7 @@ const todoSlice = createSlice({
     },
     editTodo: (state, { payload }) => {
       const edit = state.todoItems.find((item) => item.id === payload?.id);
-      state.editItem[0] = edit;
+      state.editItem.push(edit);
     },
     deleteTodo: (state, { payload }) => {
       state.todoItems = state.todoItems.filter(
