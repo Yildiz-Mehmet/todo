@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteTodo, editTodo } from "../store/todoSlice";
 import { useRef } from "react";
 
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
 
 const TodoInput = ({ data }) => {
   const editt = useSelector((state) => state.todo.editItem);
+  const [input, setInput] = useState();
 
   const ref = useRef();
   const dispatch = useDispatch();
@@ -16,7 +17,9 @@ const TodoInput = ({ data }) => {
   const { id, text, completed } = data;
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+  };
   const handleShow = () => {
     dispatch(editTodo({ id: id }));
     setShow(true);
@@ -65,26 +68,17 @@ input{
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>EDİT</Form.Label>
               <Form.Control
-                type="email"
-                placeholder="name@example.com"
+                type="text"
+                placeholder="Edit,please..."
                 autoFocus
+                onChange={(e) => setInput(e.target.value)}
               />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Example textarea</Form.Label>
-              <Form.Control as="textarea" rows={3} />
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
           <Button variant="primary" onClick={handleClose}>
             Save Changes
           </Button>
