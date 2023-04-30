@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTodo, editTodo } from "../store/todoSlice";
+import { deleteTodo, editTodo, editedTodo } from "../store/todoSlice";
 import { useRef } from "react";
 
 import Button from "react-bootstrap/Button";
@@ -18,6 +18,7 @@ const TodoInput = ({ data }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => {
+    dispatch(editedTodo({ id: id, text: input }));
     setShow(false);
   };
   const handleShow = () => {
