@@ -3,10 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteTodo, editTodo } from "../store/todoSlice";
 import { useRef } from "react";
 
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 
 const TodoInput = ({ data }) => {
+  const editt = useSelector((state) => state.todo.editItem);
+
   const ref = useRef();
   const dispatch = useDispatch();
   const [decoration, setDecoration] = useState(true);
@@ -17,6 +20,7 @@ const TodoInput = ({ data }) => {
   const handleShow = () => {
     dispatch(editTodo({ id: id }));
     setShow(true);
+    console.log("merhaba");
   };
 
   const deleteSubmit = () => {
@@ -58,7 +62,25 @@ input{
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="name@example.com"
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Example textarea</Form.Label>
+              <Form.Control as="textarea" rows={3} />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
@@ -68,7 +90,6 @@ input{
           </Button>
         </Modal.Footer>
       </Modal>
-
       <div className="h-100">
         <input
           type="text"
