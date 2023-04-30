@@ -7,6 +7,7 @@ const todoSlice = createSlice({
     editItem: [],
     completed: false,
   },
+
   reducers: {
     addTodo: (state, { payload }) => {
       const newTodo = {
@@ -18,8 +19,9 @@ const todoSlice = createSlice({
     },
     editTodo: (state, { payload }) => {
       const edit = state.todoItems.find((item) => item.id === payload?.id);
-      state.editItem.push(edit);
+      state.editItem[0] = edit;
     },
+
     deleteTodo: (state, { payload }) => {
       state.todoItems = state.todoItems.filter(
         (item) => item.id !== payload?.id

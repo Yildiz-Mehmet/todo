@@ -12,8 +12,7 @@ const TodoInput = ({ data }) => {
   const [decoration, setDecoration] = useState(true);
   const { id, text, completed } = data;
   const [show, setShow] = useState(false);
-  const editItemss = useSelector((state) => state.editItem);
-  console.log(editItemss);
+
   const handleClose = () => setShow(false);
   const handleShow = () => {
     dispatch(editTodo({ id: id }));
@@ -32,7 +31,6 @@ const TodoInput = ({ data }) => {
         : ref.current.classList.remove("text-decoration-line-through");
     }
   };
-  useEffect(() => {}, []);
 
   return (
     <>
